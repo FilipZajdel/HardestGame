@@ -18,11 +18,15 @@ all: $(MAIN)
 	mkdir -p $(OUT_DIR)
 	$(CC) $(MAIN) $(SRC) $(INC) -o $(OUT_DIR)/$(EXE)
 
-test: $(MAIN_TEST)
-	mkdir -p $(OUT_TEST)
-	$(CC_TEST) -pthread $(MAIN_TEST) $(SRC) $(INC) $(SRC_TEST) -lgtest_main -lgtest -o $(OUT_TEST)/$(EXE_TEST) 
+build_lib:
+	$(CC) -c $(SRC)
+
+test: build_lib $(MAIN_TEST) $(SRC) $(INC)
+	-mkdir -p $(OUT_TEST)
+	$(CC_TEST) -pthread $(MAIN_TEST) *.o -lgtest_main -lgtest -o $(OUT_TEST)/$(EXE_TEST) 
 	(cd $(OUT_TEST); ./$(EXE_TEST))
 
 clean:
-	rm -r $(OUT_DIR) $(OUT_TEST)
+	-rm -r $(OUT_DIR) $(OUT_TEST)
+	-rm *.o
 
