@@ -32,8 +32,7 @@ TEST(entity, get_type) {
 }
 
 TEST(entity, collided) {
-  struct entity_t* entity = NULL;
-  entity = entity_make(PLAYER, 20, 30, RECTANGLE);
+  struct entity_t* entity = entity_make(PLAYER, 20, 30, RECTANGLE);
 
   unsigned int x = 20, y = 30;
   const int delta_x = 10, delta_y = 10;
@@ -55,5 +54,10 @@ TEST(entity, collided) {
 }
 
 TEST(entity, not_collided) {
-    EXPECT_TRUE(false);
+  struct entity_t* entity = entity_make(PLAYER, 20, 30, RECTANGLE);
+
+  EXPECT_FALSE(0 == entity->collided(entity, 50, 80));
+
+  entity_remove(&entity);
 }
+

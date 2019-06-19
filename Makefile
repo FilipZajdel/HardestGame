@@ -23,7 +23,7 @@ build_lib:
 
 test: build_lib $(MAIN_TEST) $(SRC) $(INC)
 	-mkdir -p $(OUT_TEST)
-	$(CC_TEST) -pthread $(MAIN_TEST) *.o -lgtest_main -lgtest -o $(OUT_TEST)/$(EXE_TEST) 
+	$(CC_TEST) -g -o0 -pthread $(MAIN_TEST) *.o -lgtest_main -lgtest -o $(OUT_TEST)/$(EXE_TEST) 
 	(cd $(OUT_TEST); ./$(EXE_TEST))
 
 clean:

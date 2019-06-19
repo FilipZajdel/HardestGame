@@ -5,8 +5,6 @@
 extern "C"{
 #endif
 
-int dummy();
-
 
 #ifdef __cplusplus
 }
