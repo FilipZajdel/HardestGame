@@ -1,15 +1,14 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "shape.h"
-
 #include <stdint.h>
+#include "shape.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-enum entity_types_t { PLAYER = 90, TRAP=91, SAFE_POINT=5 };
+enum entity_types_t { PLAYER = 90, TRAP = 91, SAFE_POINT = 5 };
 
 struct entity_t {
   // public
@@ -17,10 +16,15 @@ struct entity_t {
   uint8_t (*get_type)(struct entity_t*);
   /** @brief Moves entity by given deltas */
   void (*move)(struct entity_t*, int delta_x, int delta_y);
+  unsigned int (*get_y)(struct entity_t *);
+  unsigned int (*get_x)(struct entity_t *);
   /** @brief Checks whether entity collides with given point
    * @return 0 on collision, other value otherwise
    */
   uint8_t (*collided)(struct entity_t*, unsigned int, unsigned int);
+
+  uint8_t (*collided_with_entity)(struct entity_t* self,
+                                  struct entity_t* other);
   // private
   uint8_t _type;
   unsigned int _coord_x, _coord_y;

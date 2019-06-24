@@ -29,6 +29,9 @@ void entities_map_field_modify(unsigned int x,
                                unsigned int y,
                                struct entity_t* new_entity);
 
+/** @brief Cleans the map */
+void entities_map_refresh();
+
 #ifdef __cplusplus
 }
 #endif

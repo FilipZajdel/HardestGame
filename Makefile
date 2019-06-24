@@ -16,7 +16,7 @@ INC_TEST=components_test/*.h
 #-- targets
 all: $(MAIN)
 	mkdir -p $(OUT_DIR)
-	$(CC) $(MAIN) $(SRC) $(INC) -o $(OUT_DIR)/$(EXE)
+	$(CC) -g -o0 $(MAIN) $(SRC) $(INC) -o $(OUT_DIR)/$(EXE)
 
 build_lib:
 	$(CC) -c $(SRC)
