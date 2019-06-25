@@ -3,6 +3,7 @@
 #include "../components_test/entity_test.c"
 #include "../components_test/map_test.c"
 #include "../components_test/level_test.c"
+#include "../components_test/game_test.c"
 
 
 main(int argc, char* argv[]) {

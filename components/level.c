@@ -73,13 +73,13 @@ void level_update(struct level_t* l, enum player_move_t move) {
   struct entity_t* collided_entity = l->_get_collision(l);
 
   if (NULL == collided_entity) {
-    l->_state = RUNNING;
+    l->_state = LEVEL_RUNNING;
   } else if (collided_entity->get_type(collided_entity) == SAFE_POINT) {
     l->_state = LEVEL_DONE;
   } else if (collided_entity->get_type(collided_entity) == TRAP) {
-    l->_state = GAME_OVER;
+    l->_state = LEVEL_FAILED;
   } else {
-    l->_state = GAME_OVER;
+    l->_state = LEVEL_FAILED;
   }
 }
 
@@ -99,7 +99,7 @@ struct level_t* level_make(struct level_config_t* lvl_config) {
                                    lvl_config->traps_start_y[i], RECTANGLE);
   }
 
-  level->_state = RUNNING;
+  level->_state = LEVEL_RUNNING;
   level->get_state = level_get_state;
   level->update = level_update;
   level->_traps_number = lvl_config->traps_number;

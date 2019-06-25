@@ -10,7 +10,7 @@ extern "C" {
 #endif
 /** For now levels are hardcoded in files containted in directory levels */
 
-enum level_states_t { RUNNING, GAME_OVER, LEVEL_DONE };
+enum level_states_t { LEVEL_RUNNING, LEVEL_FAILED, LEVEL_DONE };
 enum player_move_t { UP, DOWN, LEFT, RIGHT, NONE };
 
 struct level_t {
