@@ -30,6 +30,9 @@ void update_player(struct entity_t* player, enum player_move_t move) {
     case DOWN:
       delta_y += 1;
       break;
+    case NONE:
+    default:
+      break;
   }
 
   player->move(player, delta_x, delta_y);
@@ -105,6 +108,8 @@ struct level_t* level_make(struct level_config_t* lvl_config) {
   level->_traps_number = lvl_config->traps_number;
   level->_get_collision = get_collision;
   level->_update_map = update_map;
+
+  return level;
 }
 
 void level_remove(struct level_t** level) {
