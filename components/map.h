@@ -11,6 +11,9 @@ struct map_field_t {
   enum entity_types_t type;
 };
 
+/** @brief returns map and fills x and y with width and height of the map */
+struct map_field_t **get_map(int *x, int *y);
+
 /** @brief Initializes map with given size
  * @param width size of entities in row
  * @param height size of entities in column

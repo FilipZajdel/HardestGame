@@ -53,6 +53,7 @@ struct entity_t* entity_make(enum entity_types_t entity_type,
   entity->move = &move;
   entity->get_x = get_x;
   entity->get_y = get_y;
+  return entity;
 }
 
 void entity_remove(struct entity_t** entity) {

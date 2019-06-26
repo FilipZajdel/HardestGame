@@ -10,6 +10,13 @@ struct map_field_t** map = NULL;
 unsigned int map_x = 0;
 unsigned int map_y = 0;
 
+struct map_field_t **get_map(int *x, int *y){
+  *x = map_x;
+  *y = map_y;
+
+  return map;
+}
+
 void entities_map_init(unsigned int x, unsigned int y) {
   if (NULL != map) {
     return;

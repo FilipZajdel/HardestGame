@@ -28,13 +28,15 @@ struct game_t{
     // private
     struct level_t *_level;
     int _level_idx;
+    enum game_state_t _state;
+    void (*_init_level_by_idx)(struct game_t *self);
 };
 
 /** @brief Returns newly created game instance */
 struct game_t *game_make();
 
 /** @brief Deallocates resources of passed game instance */
-void game_remove();
+void game_remove(struct game_t **);
 
 #ifdef __cplusplus
 }
