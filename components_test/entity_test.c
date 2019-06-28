@@ -61,3 +61,31 @@ TEST(entity, not_collided) {
   entity_remove(&entity);
 }
 
+TEST(entity, making_unique_ids) {
+  struct entity_t* entities[20];
+
+  uint16_t ids[20] = {0};
+  for (int i = 0; i < 20; i++) {
+    entities[i] = entity_make(TRAP, 0, 0, RECTANGLE);
+    ids[i] = entities[i]->_id;
+  }
+
+  bool ids_unique = true;
+  for (int i = 0; i < 20; i++) {
+    for (int k = 0; k < i; k++) {
+      if (ids[i] == ids[k]) {
+        ids_unique = false;
+        break;
+      }
+    }
+    if(!ids_unique){
+      break;
+    }
+  }
+
+  for(int k=0; k<20; k++){
+    entity_remove(&entities[k]);
+  }
+
+  EXPECT_TRUE(ids_unique);
+}

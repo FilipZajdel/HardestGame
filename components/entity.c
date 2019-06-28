@@ -13,6 +13,10 @@ unsigned int get_y(struct entity_t *e){
   return e->_coord_y;
 }
 
+uint16_t get_id(struct entity_t *e){
+  return e->_id;
+} 
+
 void move(struct entity_t* entity, int delta_x, int delta_y) {
   entity->_coord_x += delta_x;
   entity->_coord_y += delta_y;
@@ -27,6 +31,12 @@ uint8_t collided_with_entity(struct entity_t* self, struct entity_t* other) {
   return self->_shape->contains(self->_shape, self->_coord_x,
                                   self->_coord_y, other->_coord_x,
                                   other->_coord_y);
+}
+
+uint16_t id_produce(){
+  static uint16_t id = 0;
+  id++;
+  return id;
 }
 
 struct entity_t* entity_make(enum entity_types_t entity_type,
@@ -53,6 +63,8 @@ struct entity_t* entity_make(enum entity_types_t entity_type,
   entity->move = &move;
   entity->get_x = get_x;
   entity->get_y = get_y;
+  entity->_id = id_produce();
+  entity->get_id = get_id;
   return entity;
 }
 

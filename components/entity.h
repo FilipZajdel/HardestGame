@@ -14,6 +14,8 @@ struct entity_t {
   // public
   /** @brief Returns type of entity */
   uint8_t (*get_type)(struct entity_t*);
+  /** @brief Returns id */
+  uint16_t (*get_id)(struct entity_t*);
   /** @brief Moves entity by given deltas */
   void (*move)(struct entity_t*, int delta_x, int delta_y);
   unsigned int (*get_y)(struct entity_t *);
@@ -27,6 +29,7 @@ struct entity_t {
                                   struct entity_t* other);
   // private
   uint8_t _type;
+  uint16_t _id;
   unsigned int _coord_x, _coord_y;
   struct shape_t* _shape;
 };

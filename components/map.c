@@ -10,7 +10,7 @@ struct map_field_t** map = NULL;
 unsigned int map_x = 0;
 unsigned int map_y = 0;
 
-struct map_field_t **get_map(int *x, int *y){
+struct map_field_t** get_map(int* x, int* y) {
   *x = map_x;
   *y = map_y;
 
@@ -27,7 +27,7 @@ void entities_map_init(unsigned int x, unsigned int y) {
   }
 
   for (int i = 0; i < x; i++) {
-    map[i] = _malloc(sizeof(struct map_field_t)*y);
+    map[i] = _malloc(sizeof(struct map_field_t) * y);
   }
 
   map_x = x;
@@ -54,28 +54,44 @@ uint8_t coordinates_ok(unsigned int x, unsigned int y) {
   return (x < map_x && y < map_y) ? 0 : 1;
 }
 
-const struct map_field_t* entities_map_get_field(unsigned int x, unsigned int y) {
+const struct map_field_t* entities_map_get_field(unsigned int x,
+                                                 unsigned int y) {
   if (0 == coordinates_ok(x, y)) {
     return (const struct map_field_t*)&map[x][y];
   }
   return NULL;
 }
 
-void overwrite_entity(struct map_field_t* field, struct entity_t* entity) {
-    field->type = entity->_type;
+void overwrite_field(struct map_field_t* field, struct entity_t* entity) {
+  field->type = entity->get_type(entity);
+  field->id = entity->get_id(entity);
 }
 
 void entities_map_field_modify(unsigned int x,
-                          unsigned int y,
-                          struct entity_t* new_entity) {
+                               unsigned int y,
+                               struct entity_t* new_entity) {
   if (0 == coordinates_ok(x, y)) {
-    overwrite_entity(&map[x][y], new_entity);
+    overwrite_field(&map[x][y], new_entity);
   }
 }
 
-void entities_map_refresh(){
-  for(int i=0; i< map_x; i++)
-    for(int j=0; j<map_y; j++){
+void entities_map_refresh() {
+  for (int i = 0; i < map_x; i++)
+    for (int j = 0; j < map_y; j++) {
       map[i][j].type = 0;
     }
+}
+
+uint8_t get_field_coordinates_by_id(uint16_t id, unsigned int* x, unsigned int* y) {
+
+  for(int col=0; col<map_x; col++){
+    for(int row=0; row<map_y; row++){
+      if(id == map[col][row].id){
+        *x = col;
+        *y = row;
+        return 0;
+      }
+    }
+  }
+  return 1;
 }
