@@ -79,6 +79,7 @@ void entities_map_refresh() {
   for (int i = 0; i < map_x; i++)
     for (int j = 0; j < map_y; j++) {
       map[i][j].type = 0;
+      map[i][j].id = 0;
     }
 }
 

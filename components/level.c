@@ -1,6 +1,5 @@
 #include "level.h"
 #include <stdlib.h>
-#include "map.h"
 
 enum level_states_t level_get_state(struct level_t* l) {
   return l->_state;
@@ -9,7 +8,22 @@ enum level_states_t level_get_state(struct level_t* l) {
 void update_traps(struct level_t* l) {
   for (struct entity_t** trap = l->_traps;
        trap <= &l->_traps[l->_traps_number - 1]; trap++) {
-    (*trap)->move(*trap, 1, 0);
+
+    static int ctr = 0;
+    static int invert = 0;
+    int dx = 0;
+
+    ctr = (ctr+1)%13;
+    if(12 == ctr) {
+        invert = (invert&0b01)^0b01;
+    }
+
+    if(0 == invert&0b01) dx = -1;
+    else dx = 1;
+
+    int dy = 0;
+
+    (*trap)->move(*trap, dx, dy);
   }
 }
 
@@ -34,6 +48,7 @@ void update_player(struct entity_t* player, enum player_move_t move) {
     default:
       break;
   }
+  printf("Player coordinates: %d %d\n", player->_coord_x, player->_coord_y);
 
   player->move(player, delta_x, delta_y);
 }
@@ -50,6 +65,7 @@ void update_map(struct level_t* l) {
 
   entities_map_field_modify(l->_player->get_x(l->_player),
                             l->_player->get_y(l->_player), l->_player);
+
   entities_map_field_modify(l->_safe_point->get_x(l->_safe_point),
                             l->_safe_point->get_y(l->_safe_point),
                             l->_safe_point);
