@@ -5,25 +5,50 @@ enum level_states_t level_get_state(struct level_t* l) {
   return l->_state;
 }
 
-void update_traps(struct level_t* l) {
-  for (struct entity_t** trap = l->_traps;
-       trap <= &l->_traps[l->_traps_number - 1]; trap++) {
+void determine_trap_direction(struct level_t *l, int *dx, int *dy, int trap_idx){
 
-    static int ctr = 0;
-    static int invert = 0;
-    int dx = 0;
+    struct entity_t *trap = l->_traps[trap_idx];
 
-    ctr = (ctr+1)%13;
-    if(12 == ctr) {
-        invert = (invert&0b01)^0b01;
+    if (l->_config->traps_start_y[trap_idx] == l->_config->traps_end_y[trap_idx]){
+
+        *dy = 0;
+        if(l->_config->traps_start_x[trap_idx] < l->_config->traps_end_x[trap_idx]){
+            *dx = 1;
+        } else {
+            *dx = -1;
+        }
+
+        if(trap->get_x(trap) == l->_config->traps_end_x[trap_idx]){
+            // then swap values
+            uint16_t temp = l->_config->traps_end_x[trap_idx];
+            l->_config->traps_end_x[trap_idx] = l->_config->traps_start_x[trap_idx];
+            l->_config->traps_start_x[trap_idx] = temp;
+        }
+    } else if (l->_config->traps_start_x[trap_idx] == l->_config->traps_end_x[trap_idx]){
+
+        *dx = 0;
+        if(l->_config->traps_start_y[trap_idx] < l->_config->traps_end_y[trap_idx]){
+            *dy = 1;
+        } else {
+            *dy = -1;
+        }
+
+        if(trap->get_y(trap) == l->_config->traps_end_y[trap_idx]){
+            // then swap values
+            uint16_t temp = l->_config->traps_end_y[trap_idx];
+            l->_config->traps_end_y[trap_idx] = l->_config->traps_start_y[trap_idx];
+            l->_config->traps_start_y[trap_idx] = temp;
+        }
     }
+}
 
-    if(0 == invert&0b01) dx = -1;
-    else dx = 1;
-
+void update_traps(struct level_t* l) {
+  for (int trap_idx = 0; trap_idx < l->_traps_number; trap_idx++) {
+    int dx = 0;
     int dy = 0;
 
-    (*trap)->move(*trap, dx, dy);
+    l->_determine_trap_direction(l, &dx, &dy, trap_idx);
+    l->_traps[trap_idx]->move(l->_traps[trap_idx], dx, dy);
   }
 }
 
@@ -102,6 +127,23 @@ void level_update(struct level_t* l, enum player_move_t move) {
   }
 }
 
+void copy_config(struct level_config_t *lvl_config, struct level_t *lvl){
+
+    uint16_t traps_number = lvl_config->traps_number;
+    lvl->_config = malloc(sizeof(struct level_config_t));
+    *(lvl->_config) = *lvl_config;
+    lvl->_config->traps_start_x = malloc(sizeof(uint16_t)*traps_number);
+    lvl->_config->traps_start_y = malloc(sizeof(uint16_t)*traps_number);
+    lvl->_config->traps_end_x = malloc(sizeof(uint16_t)*traps_number);
+    lvl->_config->traps_end_y = malloc(sizeof(uint16_t)*traps_number);
+
+    for(int trap_ctr=0; trap_ctr < traps_number; trap_ctr++){
+        lvl->_config->traps_start_x[trap_ctr] = lvl_config->traps_start_x[trap_ctr];
+        lvl->_config->traps_start_y[trap_ctr] = lvl_config->traps_start_y[trap_ctr];
+        lvl->_config->traps_end_x[trap_ctr] = lvl_config->traps_end_x[trap_ctr];
+        lvl->_config->traps_end_y[trap_ctr] = lvl_config->traps_end_y[trap_ctr];
+    }
+}
 struct level_t* level_make(struct level_config_t* lvl_config) {
   struct level_t* level = malloc(sizeof(struct level_t));
 
@@ -124,6 +166,8 @@ struct level_t* level_make(struct level_config_t* lvl_config) {
   level->_traps_number = lvl_config->traps_number;
   level->_get_collision = get_collision;
   level->_update_map = update_map;
+  copy_config(lvl_config, level);
+  level->_determine_trap_direction = determine_trap_direction;
 
   return level;
 }
@@ -144,4 +188,5 @@ void level_remove(struct level_t** level) {
   free(*level);
 
   entities_map_deinit();
+  // also delete config !!! TODO
 }
