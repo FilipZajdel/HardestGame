@@ -101,7 +101,7 @@ struct entity_t* get_collision(struct level_t* l) {
 
   for (struct entity_t** trap = &l->_traps[0];
        trap <= &l->_traps[l->_traps_number - 1]; trap++) {
-    if ((*trap)->collided_with_entity(*trap, l->_player)) {
+    if (0 == (*trap)->collided_with_entity(*trap, l->_player)) {
       collided_entity = *trap;
       break;
     }
