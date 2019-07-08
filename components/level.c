@@ -18,9 +18,9 @@ void determine_trap_direction(struct level_t* l,
     *dy = 0;
     if (l->_config->traps_start_x[trap_idx] <
         l->_config->traps_end_x[trap_idx]) {
-      *dx = 1;
+      *dx = TRAPS_VELOCITY_1;
     } else {
-      *dx = -1;
+      *dx = -TRAPS_VELOCITY_1;
     }
 
     if (trap->get_x(trap) == l->_config->traps_end_x[trap_idx]) {
@@ -34,9 +34,9 @@ void determine_trap_direction(struct level_t* l,
     *dx = 0;
     if (l->_config->traps_start_y[trap_idx] <
         l->_config->traps_end_y[trap_idx]) {
-      *dy = 1;
+      *dy = TRAPS_VELOCITY_1;
     } else {
-      *dy = -1;
+      *dy = -TRAPS_VELOCITY_1;
     }
 
     if (trap->get_y(trap) == l->_config->traps_end_y[trap_idx]) {
@@ -106,7 +106,7 @@ void update_player(struct level_t* l, enum player_move_t move) {
   // check against reaching the obstacle
   if (l->_config->obstacles_number != 0) {
     for (struct entity_t** obstacle = l->_obstacles;
-         obstacle < &l->_obstacles[l->_traps_number]; obstacle++) {
+         obstacle < &l->_obstacles[l->_config->obstacles_number]; obstacle++) {
       if (0 == (*obstacle)->collided(*obstacle, next_player_x, next_player_y)) {
         return;
       }
@@ -134,7 +134,7 @@ void update_map(struct level_t* l) {
 
   if (l->_config->obstacles_number != 0) {
     for (struct entity_t** obstacle = l->_obstacles;
-         obstacle < &l->_obstacles[l->_traps_number]; obstacle++) {
+         obstacle < &l->_obstacles[l->_config->obstacles_number]; obstacle++) {
       unsigned int x = (*obstacle)->get_x(*obstacle);
       unsigned int y = (*obstacle)->get_y(*obstacle);
       entities_map_field_modify(x, y, *obstacle);
@@ -165,7 +165,7 @@ struct entity_t* get_collision(struct level_t* l) {
 
 void level_update(struct level_t* l, enum player_move_t move) {
   update_traps(l);
-  update_player(l, move);
+  l->_update_player(l, move);
   l->_update_map(l);
   struct entity_t* collided_entity = l->_get_collision(l);
 
