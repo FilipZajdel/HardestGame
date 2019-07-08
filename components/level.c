@@ -64,16 +64,16 @@ void update_player_help(struct entity_t* player, enum player_move_t move) {
 
   switch (move) {
     case LEFT:
-      delta_x -= 1;
+      delta_x -= PLAYER_VELOCITY;
       break;
     case RIGHT:
-      delta_x += 1;
+      delta_x += PLAYER_VELOCITY;
       break;
     case UP:
-      delta_y -= 1;
+      delta_y -= PLAYER_VELOCITY;
       break;
     case DOWN:
-      delta_y += 1;
+      delta_y += PLAYER_VELOCITY;
       break;
     case NONE:
     default:
@@ -90,16 +90,16 @@ void update_player(struct level_t* l, enum player_move_t move) {
 
   switch (move) {
     case LEFT:
-      next_player_x -= 1;
+      next_player_x -= (next_player_x > 0) ? PLAYER_VELOCITY : 0; 
       break;
     case RIGHT:
-      next_player_x += 1;
+      next_player_x += (next_player_x < l->_config->dim_x) ? PLAYER_VELOCITY : 0; 
       break;
     case UP:
-      next_player_y -= 1;
+      next_player_y -= (next_player_y > 0) ? PLAYER_VELOCITY : 0; 
       break;
     case DOWN:
-      next_player_y += 1;
+      next_player_y += (next_player_y < l->_config->dim_y) ? PLAYER_VELOCITY : 0;
       break;
   }
 

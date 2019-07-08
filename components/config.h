@@ -12,7 +12,7 @@ extern "C"{
 
 #define TRAPS_NUMBER_1 3
 #define OBSTACLES_NUMBER_1 1
-#define TRAPS_VELOCITY_1 2
+
 extern uint16_t traps_number_1;
 extern uint16_t traps_start_x_1[TRAPS_NUMBER_1];
 extern uint16_t traps_start_y_1[TRAPS_NUMBER_1];
@@ -38,6 +38,9 @@ extern uint16_t obstacles_y_1[OBSTACLES_NUMBER_1];
 /*safe_point_x*/ safe_point_x_1,/*safe_point_y*/safe_point_y_1, \
 /*obstacles_x*/obstacles_x_1 ,/*obstacles_y*/obstacles_y_1, \
 obstacles_number_1}
+
+#define TRAPS_VELOCITY_1 2
+#define PLAYER_VELOCITY 1
 
 #ifdef __cplusplus
 }
