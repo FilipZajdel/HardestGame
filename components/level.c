@@ -147,7 +147,6 @@ void copy_config(struct level_config_t *lvl_config, struct level_t *lvl){
 struct level_t* level_make(struct level_config_t* lvl_config) {
   struct level_t* level = malloc(sizeof(struct level_t));
 
-//  entities_map_init(lvl_config->dim_x, lvl_config->dim_y);
   level->_safe_point = entity_make(SAFE_POINT, lvl_config->safe_point_x,
                                    lvl_config->safe_point_y, RECTANGLE);
   level->_player = entity_make(PLAYER, lvl_config->player_start_x,
@@ -184,9 +183,15 @@ void level_remove(struct level_t** level) {
     entity_remove((*level)->_traps + i);
   }
 
+  free((*level)->_config->traps_start_x);
+  free((*level)->_config->traps_start_y);
+  free((*level)->_config->traps_end_x);
+  free((*level)->_config->traps_end_y);
+  free((*level)->_config);
+
   free((*level)->_traps);
   free(*level);
 
   entities_map_deinit();
-  // also delete config !!! TODO
 }
+

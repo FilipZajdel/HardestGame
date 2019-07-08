@@ -18,8 +18,8 @@ struct entity_t {
   uint16_t (*get_id)(struct entity_t*);
   /** @brief Moves entity by given deltas */
   void (*move)(struct entity_t*, int delta_x, int delta_y);
-  unsigned int (*get_y)(struct entity_t *);
-  unsigned int (*get_x)(struct entity_t *);
+  unsigned int (*get_y)(struct entity_t*);
+  unsigned int (*get_x)(struct entity_t*);
   /** @brief Checks whether entity collides with given point
    * @return 0 on collision, other value otherwise
    */

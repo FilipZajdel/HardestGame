@@ -14,10 +14,10 @@ TEST(level, level_make_and_remove) {
   level_config.dim_x = 30;
   level_config.dim_y = 30;
 
-  uint8_t traps_start_x[5] = {0, 5, 8, 10, 7};
-  uint8_t traps_start_y[5] = {0, 0, 8, 5, 7};
-  uint8_t traps_end_x[5] = {6, 10, 18, 15, 7};
-  uint8_t traps_end_y[5] = {0, 0, 8, 5, 20};
+  uint16_t traps_start_x[5] = {0, 5, 8, 10, 7};
+  uint16_t traps_start_y[5] = {0, 0, 8, 5, 7};
+  uint16_t traps_end_x[5] = {6, 10, 18, 15, 7};
+  uint16_t traps_end_y[5] = {0, 0, 8, 5, 20};
 
   level_config.traps_start_x = traps_start_x;
   level_config.traps_start_y = traps_start_y;
@@ -39,10 +39,10 @@ TEST(level, get_collision) {
   level_config.dim_x = 30;
   level_config.dim_y = 30;
 
-  uint8_t traps_start_x[5] = {0, 5, 8, 10, 7};
-  uint8_t traps_start_y[5] = {0, 0, 8, 5, 7};
-  uint8_t traps_end_x[5] = {6, 10, 18, 15, 7};
-  uint8_t traps_end_y[5] = {0, 0, 8, 5, 20};
+  uint16_t traps_start_x[5] = {0, 5, 8, 10, 7};
+  uint16_t traps_start_y[5] = {0, 0, 8, 5, 7};
+  uint16_t traps_end_x[5] = {6, 10, 18, 15, 7};
+  uint16_t traps_end_y[5] = {0, 0, 8, 5, 20};
 
   level_config.traps_start_x = traps_start_x;
   level_config.traps_start_y = traps_start_y;
@@ -64,10 +64,10 @@ TEST(level, update) {
   level_config.dim_x = 30;
   level_config.dim_y = 30;
 
-  uint8_t traps_start_x[5] = {0, 5, 8, 10, 7};
-  uint8_t traps_start_y[5] = {0, 0, 8, 5, 7};
-  uint8_t traps_end_x[5] = {6, 10, 18, 15, 7};
-  uint8_t traps_end_y[5] = {0, 0, 8, 5, 20};
+  uint16_t traps_start_x[5] = {0, 5, 8, 10, 7};
+  uint16_t traps_start_y[5] = {0, 0, 8, 5, 7};
+  uint16_t traps_end_x[5] = {6, 10, 18, 15, 7};
+  uint16_t traps_end_y[5] = {0, 0, 8, 5, 20};
 
   level_config.traps_start_x = traps_start_x;
   level_config.traps_start_y = traps_start_y;
@@ -89,10 +89,10 @@ TEST(level, map) {
   level_config.dim_x = 30;
   level_config.dim_y = 30;
 
-  uint8_t traps_start_x[5] = {0, 5, 8, 10, 7};
-  uint8_t traps_start_y[5] = {0, 0, 8, 5, 7};
-  uint8_t traps_end_x[5] = {6, 10, 18, 15, 7};
-  uint8_t traps_end_y[5] = {0, 0, 8, 5, 20};
+  uint16_t traps_start_x[5] = {0, 5, 8, 10, 7};
+  uint16_t traps_start_y[5] = {0, 0, 8, 5, 7};
+  uint16_t traps_end_x[5] = {6, 10, 18, 15, 7};
+  uint16_t traps_end_y[5] = {0, 0, 8, 5, 20};
 
   level_config.traps_start_x = traps_start_x;
   level_config.traps_start_y = traps_start_y;
