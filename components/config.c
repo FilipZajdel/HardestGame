@@ -10,3 +10,7 @@ uint16_t player_start_y_1 = 100;
 uint16_t safe_point_x_1 = 10;
 uint16_t safe_point_y_1 = 10;
 uint16_t traps_number_1 = TRAPS_NUMBER_1;
+
+uint16_t obstacles_number = 6;
+uint16_t obstacles_x_1[OBSTACLES_NUMBER_1] = {0, 15, 30, 45, 60, 75}; 
+uint16_t obstacles_y_1[OBSTACLES_NUMBER_1] = {0, 0, 0, 0, 0, 0};

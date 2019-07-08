@@ -10,6 +10,7 @@ struct level_t* get_level_by_idx(int lvl_idx) {
     case 1: {
       struct level_config_t level_config = CONFIG_LEVEL_1;
       l = level_make(&level_config);
+      break;
     }
     default:
       break;

@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-enum entity_types_t { PLAYER = 90, TRAP = 91, SAFE_POINT = 5 };
+enum entity_types_t { PLAYER = 90, TRAP = 91, SAFE_POINT = 5, OBSTACLE = 60 };
 
 struct entity_t {
   // public

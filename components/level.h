@@ -23,6 +23,10 @@ struct level_config_t {
   uint16_t *traps_start_x, *traps_start_y, *traps_end_x, *traps_end_y;
   /** @brief Player start corrdinates */
   uint16_t player_start_x, player_start_y, safe_point_x, safe_point_y;
+  /** @brief Tables including coordinates of obstacles */
+  uint16_t *obstacles_x;
+  uint16_t *obstacles_y;
+  uint16_t obstacles_number;
 };
 
 struct level_t {
@@ -32,6 +36,7 @@ struct level_t {
   // private
   enum level_states_t _state;
   struct entity_t** _traps;
+  struct entity_t** _obstacles;
   struct entity_t* _player;
   struct entity_t* _safe_point;
   struct level_config_t *_config;
@@ -43,6 +48,7 @@ struct level_t {
   /** @brief Updates the map */
   void (*_update_map)(struct level_t *);
   void (*_determine_trap_direction)(struct level_t *l, int *dx, int *dy, int trap_idx);
+  void (*_update_player)(struct level_t *l, enum player_move_t move);
 };
 
 /** @brief Returns level made based on config provided */

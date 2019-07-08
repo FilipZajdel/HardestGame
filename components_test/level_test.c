@@ -13,6 +13,7 @@ TEST(level, level_make_and_remove) {
   level_config.safe_point_y = 17;
   level_config.dim_x = 30;
   level_config.dim_y = 30;
+  level_config.obstacles_number = 0;
 
   uint16_t traps_start_x[5] = {0, 5, 8, 10, 7};
   uint16_t traps_start_y[5] = {0, 0, 8, 5, 7};
@@ -38,6 +39,7 @@ TEST(level, get_collision) {
   level_config.safe_point_y = 17;
   level_config.dim_x = 30;
   level_config.dim_y = 30;
+  level_config.obstacles_number = 0;
 
   uint16_t traps_start_x[5] = {0, 5, 8, 10, 7};
   uint16_t traps_start_y[5] = {0, 0, 8, 5, 7};
@@ -63,6 +65,7 @@ TEST(level, update) {
   level_config.safe_point_y = 17;
   level_config.dim_x = 30;
   level_config.dim_y = 30;
+  level_config.obstacles_number = 0;
 
   uint16_t traps_start_x[5] = {0, 5, 8, 10, 7};
   uint16_t traps_start_y[5] = {0, 0, 8, 5, 7};
@@ -88,6 +91,7 @@ TEST(level, map) {
   level_config.safe_point_y = 17;
   level_config.dim_x = 30;
   level_config.dim_y = 30;
+  level_config.obstacles_number = 0;
 
   uint16_t traps_start_x[5] = {0, 5, 8, 10, 7};
   uint16_t traps_start_y[5] = {0, 0, 8, 5, 7};

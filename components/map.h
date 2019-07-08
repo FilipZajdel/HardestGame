@@ -36,7 +36,7 @@ const struct map_field_t* entities_map_get_field(unsigned int x,
 void entities_map_field_modify(unsigned int x,
                                unsigned int y,
                                struct entity_t* new_entity);
-
+ 
 /** @brief Cleans the map */
 void entities_map_refresh();
 
