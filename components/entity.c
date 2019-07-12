@@ -28,9 +28,9 @@ uint8_t collided(struct entity_t* entity, unsigned int x, unsigned int y) {
 }
 
 uint8_t collided_with_entity(struct entity_t* self, struct entity_t* other) {
-  return self->_shape->contains(self->_shape, self->_coord_x,
+  return self->_shape->contains_other(self->_shape, self->_coord_x,
                                   self->_coord_y, other->_coord_x,
-                                  other->_coord_y);
+                                  other->_coord_y, other->_shape);
 }
 
 uint16_t id_produce(){

@@ -8,21 +8,46 @@ uint8_t contains(struct shape_t* shape,
                  unsigned int origin_y,
                  unsigned int x,
                  unsigned int y) {
-  unsigned int contains = 1;
+  uint8_t contains = 1;
 
   switch (shape->_type) {
     case RECTANGLE:
-      if (x >= origin_x && x <= origin_x + RECTANGLE_WIDTH && y >= origin_y &&
-          y <= origin_y + RECTANGLE_HEIGHT) {
+      if ((x >= origin_x) && (x < (origin_x+RECTANGLE_WIDTH)) && (y>=origin_y) &&
+          (y<(origin_y+RECTANGLE_HEIGHT))) {
         contains = 0;
       }
-      // printf("x:%d origin_x:%d y: %d origin_y: %d\n", x, origin_x, y,
-      // origin_y);
       break;
     default:
       break;
   }
   return contains;
+}
+
+uint8_t contains_rectangle_helper(struct shape_t *self,unsigned int origin_x, unsigned int origin_y, unsigned int x, unsigned int y){
+
+    if( 0 == self->contains(self, origin_x, origin_y, x, y) && 0 == self->contains(self, origin_x, origin_y, x+RECTANGLE_WIDTH, y+RECTANGLE_HEIGHT)){
+        return 0;
+    }
+    return 1;
+}
+
+uint8_t contains_other(struct shape_t *self, unsigned int origin_x, unsigned int origin_y, unsigned int x, unsigned int y ,struct shape_t *other){
+
+    uint8_t contains = 1;
+
+    switch(self->_type) {
+      case RECTANGLE:
+        switch(other->_type){
+          case RECTANGLE:
+            contains = contains_rectangle_helper(self, origin_x, origin_y, x, y);
+            break;
+          default:
+            break;
+        }
+      default:
+        break;
+    }
+    return contains;
 }
 
 uint8_t get_type(struct shape_t* shape) {
@@ -38,6 +63,7 @@ struct shape_t* shape_make(enum shape_types_t type) {
   shape->_type = type;
   shape->get_type = &get_type;
   shape->contains = &contains;
+  shape->contains_other = &contains_other;
 
   return shape;
 }

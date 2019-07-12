@@ -58,7 +58,7 @@ void update_traps(struct level_t* l) {
   }
 }
 
-void update_player_help(struct entity_t* player, enum player_move_t move) {
+void update_player_helper(struct entity_t* player, enum player_move_t move) {
   int delta_x = 0;
   int delta_y = 0;
 
@@ -79,7 +79,6 @@ void update_player_help(struct entity_t* player, enum player_move_t move) {
     default:
       break;
   }
-  printf("Player coordinates: %d %d\n", player->_coord_x, player->_coord_y);
 
   player->move(player, delta_x, delta_y);
 }
@@ -87,6 +86,8 @@ void update_player_help(struct entity_t* player, enum player_move_t move) {
 void update_player(struct level_t* l, enum player_move_t move) {
   unsigned int next_player_x = l->_player->get_x(l->_player);
   unsigned int next_player_y = l->_player->get_y(l->_player);
+
+  struct entity_t *temp = entity_make(PLAYER, next_player_x, next_player_y,RECTANGLE);
 
   switch (move) {
     case LEFT:
@@ -101,26 +102,34 @@ void update_player(struct level_t* l, enum player_move_t move) {
     case DOWN:
       next_player_y += (next_player_y < l->_config->dim_y) ? PLAYER_VELOCITY : 0;
       break;
+    default:
+      entity_remove(&temp);
+      return;
   }
 
   // check against reaching the obstacle
   if (l->_config->obstacles_number != 0) {
     for (struct entity_t** obstacle = l->_obstacles;
          obstacle < &l->_obstacles[l->_config->obstacles_number]; obstacle++) {
-      if (0 == (*obstacle)->collided(*obstacle, next_player_x, next_player_y)) {
+
+      if (0 == (*obstacle)->collided_with_entity(*obstacle, temp)) {
+        entity_remove(&temp);
         return;
       }
     }
   }
 
-  // check against going out the map
+  // check against going out of the map
   if (0 == next_player_x || 0 == next_player_y ||
       next_player_x+RECTANGLE_WIDTH == l->_config->dim_x ||
       next_player_y+RECTANGLE_HEIGHT == l->_config->dim_y) {
+
+    entity_remove(&temp);
     return;
   }
 
-  update_player_help(l->_player, move);
+  update_player_helper(l->_player, move);
+  entity_remove(&temp);
 }
 
 void update_map(struct level_t* l) {

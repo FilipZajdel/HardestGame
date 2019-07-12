@@ -19,6 +19,7 @@ struct shape_t {
                            unsigned int origin_y,
                            unsigned int x,
                            unsigned int y);
+  uint8_t (*contains_other)(struct shape_t *self, unsigned int origin_x, unsigned int origin_y, unsigned int x, unsigned int y ,struct shape_t *other);
   /** @brief Returns type of shape 
    * @return type
   */
