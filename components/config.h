@@ -42,6 +42,12 @@ obstacles_number_1}
 #define TRAPS_VELOCITY_1 2
 #define PLAYER_VELOCITY 1
 
+#ifndef n_debug
+#define debug_log(msg,...) printf(msg,  ##__VA_ARGS__)
+#else
+#define debug_log(msg,...)
+#endif
+
 #ifdef __cplusplus
 }
 #endif

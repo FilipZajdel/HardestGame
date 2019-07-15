@@ -87,8 +87,6 @@ void update_player(struct level_t* l, enum player_move_t move) {
   unsigned int next_player_x = l->_player->get_x(l->_player);
   unsigned int next_player_y = l->_player->get_y(l->_player);
 
-  struct entity_t *temp = entity_make(PLAYER, next_player_x, next_player_y,RECTANGLE);
-
   switch (move) {
     case LEFT:
       next_player_x -= (next_player_x > 0) ? PLAYER_VELOCITY : 0; 
@@ -103,9 +101,10 @@ void update_player(struct level_t* l, enum player_move_t move) {
       next_player_y += (next_player_y < l->_config->dim_y) ? PLAYER_VELOCITY : 0;
       break;
     default:
-      entity_remove(&temp);
       return;
   }
+
+  struct entity_t *temp = entity_make(PLAYER, next_player_x, next_player_y,RECTANGLE);
 
   // check against reaching the obstacle
   if (l->_config->obstacles_number != 0) {

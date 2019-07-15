@@ -25,10 +25,20 @@ uint8_t contains(struct shape_t* shape,
 
 uint8_t contains_rectangle_helper(struct shape_t *self,unsigned int origin_x, unsigned int origin_y, unsigned int x, unsigned int y){
 
-    if( 0 == self->contains(self, origin_x, origin_y, x, y) && 0 == self->contains(self, origin_x, origin_y, x+RECTANGLE_WIDTH, y+RECTANGLE_HEIGHT)){
-        return 0;
+    uint8_t contains = 1;
+
+    for(unsigned int other_x = x; ((other_x < x+RECTANGLE_WIDTH) && (0 != contains)); other_x++){
+
+      for(unsigned int other_y = y; other_y < y+RECTANGLE_WIDTH; other_y++){
+        if(0 == self->contains(self, origin_x, origin_y, other_x, other_y)){
+          debug_log("other_x: %u\tother_y: %u\n", other_x, other_y);
+          contains = 0;
+          break;
+        }
+      }
     }
-    return 1;
+
+    return contains;
 }
 
 uint8_t contains_other(struct shape_t *self, unsigned int origin_x, unsigned int origin_y, unsigned int x, unsigned int y ,struct shape_t *other){
