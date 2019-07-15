@@ -10,8 +10,8 @@ extern "C"{
 #define RECTANGLE_HEIGHT 20
 #define RECTANGLE_WIDTH 20
 
-#define TRAPS_NUMBER_1 3
-#define OBSTACLES_NUMBER_1 1
+#define TRAPS_NUMBER_1 5
+#define OBSTACLES_NUMBER_1 4
 
 extern uint16_t traps_number_1;
 extern uint16_t traps_start_x_1[TRAPS_NUMBER_1];
@@ -39,8 +39,8 @@ extern uint16_t obstacles_y_1[OBSTACLES_NUMBER_1];
 /*obstacles_x*/obstacles_x_1 ,/*obstacles_y*/obstacles_y_1, \
 obstacles_number_1}
 
-#define TRAPS_VELOCITY_1 2
-#define PLAYER_VELOCITY 1
+#define TRAPS_VELOCITY_1 1
+#define PLAYER_VELOCITY 2
 
 #ifndef n_debug
 #define debug_log(msg,...) printf(msg,  ##__VA_ARGS__)
