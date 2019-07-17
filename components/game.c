@@ -11,6 +11,11 @@ struct level_t* get_level_by_idx(int lvl_idx) {
       struct level_config_t level_config = CONFIG_LEVEL_1;
       l = level_make(&level_config);
       break;
+    } 
+    case 2: {
+      struct level_config_t level_config = CONFIG_LEVEL_2;
+      l = level_make(&level_config);
+      break;
     }
     default:
       break;
@@ -23,6 +28,11 @@ void init_map_by_level_idx(int lvl_idx) {
   switch (lvl_idx % (LEVEL_NUMBER + 1)) {
     case 1: {
       struct level_config_t level_config = CONFIG_LEVEL_1;
+      entities_map_init(level_config.dim_x, level_config.dim_y);
+    }
+    case 2: {
+      struct level_config_t level_config = CONFIG_LEVEL_2;
+      entities_map_deinit();
       entities_map_init(level_config.dim_x, level_config.dim_y);
     }
     default:
@@ -63,11 +73,10 @@ void update(struct game_t* self, enum player_move_t player_move) {
       self->_state = GAME_OVER;
       break;
     case LEVEL_DONE:
-      level_remove(&self->_level);
       self->_level_idx += 1;
       self->_init_level_by_idx(self);  // to make
       init_map_by_level_idx(self->_level_idx);
-      self->_state = RUNNING;
+      self->_state = LEVEL_CHANGED;
       break;
     default:
       break;

@@ -1,4 +1,5 @@
 #include "map.h"
+#include "config.h"
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -63,6 +64,7 @@ const struct map_field_t* entities_map_get_field(unsigned int x,
 }
 
 void overwrite_field(struct map_field_t* field, struct entity_t* entity) {
+  debug_log("Overwriting %u\n", entity->get_id(entity));
   field->type = entity->get_type(entity);
   field->id = entity->get_id(entity);
 }
@@ -76,11 +78,12 @@ void entities_map_field_modify(unsigned int x,
 }
 
 void entities_map_refresh() {
-  for (int i = 0; i < map_x; i++)
+  for (int i = 0; i < map_x; i++){
     for (int j = 0; j < map_y; j++) {
       map[i][j].type = 0;
       map[i][j].id = 0;
     }
+  }
 }
 
 uint8_t get_field_coordinates_by_id(uint16_t id, unsigned int* x, unsigned int* y) {

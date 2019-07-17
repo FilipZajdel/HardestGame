@@ -9,7 +9,7 @@
 extern "C"{
 #endif
 
-enum game_state_t {RUNNING, GAME_OVER, NON_INIT};
+enum game_state_t {RUNNING, GAME_OVER, NON_INIT, LEVEL_CHANGED};
 
 struct game_t{
     // public

@@ -132,7 +132,9 @@ void update_player(struct level_t* l, enum player_move_t move) {
 }
 
 void update_map(struct level_t* l) {
+
   entities_map_refresh();
+
   for (struct entity_t** trap = l->_traps; trap < &l->_traps[l->_traps_number];
        trap++) {
     unsigned int x = (*trap)->get_x(*trap);
@@ -166,6 +168,12 @@ struct entity_t* get_collision(struct level_t* l) {
       collided_entity = *trap;
       break;
     }
+  }
+
+  if(collided_entity == NULL){
+    if(0 == l->_safe_point->collided_with_entity(l->_safe_point, l->_player)){
+      collided_entity = l->_safe_point;
+    } 
   }
 
   return collided_entity;
