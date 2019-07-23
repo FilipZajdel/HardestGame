@@ -11,7 +11,7 @@ extern "C"{
 #define RECTANGLE_WIDTH 20
 
 #define PLAYER_VELOCITY 2 // points per iteration
-#define LEVEL_NUMBER 2  // Tells how many levels are available
+#define LEVEL_NUMBER 3  // Tells how many levels are available
 
 /********************************************************
  * ***     ****** **      ** ******   ***          **   
@@ -39,6 +39,8 @@ extern uint16_t obstacles_number_1;
 extern uint16_t obstacles_x_1[OBSTACLES_NUMBER_1];
 extern uint16_t obstacles_y_1[OBSTACLES_NUMBER_1];
 
+extern const char level_name_1[20]; 
+
 #define CONFIG_LEVEL_1 {    \
 /*dim_x*/ 300, /*dim_y*/ 300, /*traps_number*/ traps_number_1, \
 /*traps_start_x*/traps_start_x_1, /*traps_start_y*/traps_start_y_1, \
@@ -49,7 +51,6 @@ extern uint16_t obstacles_y_1[OBSTACLES_NUMBER_1];
 obstacles_number_1}
 
 #define TRAPS_VELOCITY_1 1
-
 
 /********************************************************
  * ***     ****** **      ** ******   ***        ***   
@@ -77,6 +78,8 @@ extern uint16_t obstacles_number_2;
 extern uint16_t obstacles_x_2[OBSTACLES_NUMBER_2];
 extern uint16_t obstacles_y_2[OBSTACLES_NUMBER_2];
 
+extern const char level_name_2[20]; 
+
 #define CONFIG_LEVEL_2 {    \
 /*dim_x*/ 300, /*dim_y*/ 300, /*traps_number*/ traps_number_2, \
 /*traps_start_x*/traps_start_x_2, /*traps_start_y*/traps_start_y_2, \
@@ -87,6 +90,46 @@ extern uint16_t obstacles_y_2[OBSTACLES_NUMBER_2];
 obstacles_number_2}
 
 #define TRAPS_VELOCITY_2 1
+
+/********************************************************
+ * ***     ****** **      ** ******   ***       *****   
+ * **      **     **      ** **       **            * 
+ * **      ******  **    **  *****    **          **
+ * **      **       **  **   **       **            *
+ * ******* *******    **     *******  ********  ***** 
+ * *****************************************************/
+
+#define TRAPS_NUMBER_3 7
+#define OBSTACLES_NUMBER_3 49
+
+extern uint16_t traps_number_3;
+extern uint16_t traps_start_x_3[TRAPS_NUMBER_3];
+extern uint16_t traps_start_y_3[TRAPS_NUMBER_3];
+extern uint16_t traps_end_x_3[TRAPS_NUMBER_3];
+extern uint16_t traps_end_y_3[TRAPS_NUMBER_3];
+
+extern uint16_t player_start_x_3;
+extern uint16_t player_start_y_3;
+extern uint16_t safe_point_x_3;
+extern uint16_t safe_point_y_3;
+
+extern uint16_t obstacles_number_3;
+extern uint16_t obstacles_x_3[OBSTACLES_NUMBER_3];
+extern uint16_t obstacles_y_3[OBSTACLES_NUMBER_3];
+
+extern const char level_name_3[20]; 
+
+#define CONFIG_LEVEL_3 {    \
+/*dim_x*/ 300, /*dim_y*/ 300, /*traps_number*/ traps_number_3, \
+/*traps_start_x*/traps_start_x_3, /*traps_start_y*/traps_start_y_3, \
+/*traps_enx_x*/traps_end_x_3, /*traps_end_y*/traps_end_y_3, \
+/*player_start_point_x*/player_start_x_3, /*player_start_point_y*/player_start_y_3, \
+/*safe_point_x*/ safe_point_x_3,/*safe_point_y*/safe_point_y_3, \
+/*obstacles_x*/obstacles_x_3 ,/*obstacles_y*/obstacles_y_3, \
+obstacles_number_3}
+
+#define TRAPS_VELOCITY_3 1
+
 
 #include <stdio.h>
 

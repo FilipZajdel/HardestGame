@@ -17,6 +17,11 @@ struct level_t* get_level_by_idx(int lvl_idx) {
       l = level_make(&level_config);
       break;
     }
+    case 3: {
+      struct level_config_t level_config = CONFIG_LEVEL_3;
+      l = level_make(&level_config);
+      break;
+    }
     default:
       break;
   }
@@ -32,6 +37,11 @@ void init_map_by_level_idx(int lvl_idx) {
     }
     case 2: {
       struct level_config_t level_config = CONFIG_LEVEL_2;
+      entities_map_deinit();
+      entities_map_init(level_config.dim_x, level_config.dim_y);
+    }
+    case 3: {
+      struct level_config_t level_config = CONFIG_LEVEL_3;
       entities_map_deinit();
       entities_map_init(level_config.dim_x, level_config.dim_y);
     }
