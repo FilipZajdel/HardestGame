@@ -119,9 +119,9 @@ void update_player(struct level_t* l, enum player_move_t move) {
   }
 
   // check against going out of the map
-  if (0 == next_player_x || 0 == next_player_y ||
-      next_player_x+RECTANGLE_WIDTH == l->_config->dim_x ||
-      next_player_y+RECTANGLE_HEIGHT == l->_config->dim_y) {
+  if (0 >= (int32_t)next_player_x || 0 >= (int32_t)next_player_y ||
+      next_player_x+RECTANGLE_WIDTH >= l->_config->dim_x ||
+      next_player_y+RECTANGLE_HEIGHT >= l->_config->dim_y) {
 
     entity_remove(&temp);
     return;

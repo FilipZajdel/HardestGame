@@ -7,11 +7,13 @@
 extern "C"{
 #endif
 
+#define DEBUG_LEVEL 4
+
 #define RECTANGLE_HEIGHT 20
 #define RECTANGLE_WIDTH 20
 
 #define PLAYER_VELOCITY 2 // points per iteration
-#define LEVEL_NUMBER 3  // Tells how many levels are available
+#define LEVEL_NUMBER 4  // Tells how many levels are available
 
 /********************************************************
  * ***     ****** **      ** ******   ***          **   
@@ -22,7 +24,7 @@ extern "C"{
  * *****************************************************/
 
 #define TRAPS_NUMBER_1 6
-#define OBSTACLES_NUMBER_1 7
+#define OBSTACLES_NUMBER_1 9
 
 extern uint16_t traps_number_1;
 extern uint16_t traps_start_x_1[TRAPS_NUMBER_1];
@@ -130,6 +132,44 @@ obstacles_number_3}
 
 #define TRAPS_VELOCITY_3 1
 
+/********************************************************
+ * ***     ****** **      ** ******   ***            *
+ * **      **     **      ** **       **            * 
+ * **      ******  **    **  *****    **           *****
+ * **      **       **  **   **       **              *
+ * ******* *******    **     *******  ********        *
+ * *****************************************************/
+
+#define TRAPS_NUMBER_4 9
+#define OBSTACLES_NUMBER_4 26
+
+extern uint16_t traps_number_4;
+extern uint16_t traps_start_x_4[TRAPS_NUMBER_4];
+extern uint16_t traps_start_y_4[TRAPS_NUMBER_4];
+extern uint16_t traps_end_x_4[TRAPS_NUMBER_4];
+extern uint16_t traps_end_y_4[TRAPS_NUMBER_4];
+
+extern uint16_t player_start_x_4;
+extern uint16_t player_start_y_4;
+extern uint16_t safe_point_x_4;
+extern uint16_t safe_point_y_4;
+
+extern uint16_t obstacles_number_4;
+extern uint16_t obstacles_x_4[OBSTACLES_NUMBER_4];
+extern uint16_t obstacles_y_4[OBSTACLES_NUMBER_4];
+
+extern const char level_name_4[20]; 
+
+#define CONFIG_LEVEL_4 {    \
+/*dim_x*/ 300, /*dim_y*/ 300, /*traps_number*/ traps_number_4, \
+/*traps_start_x*/traps_start_x_4, /*traps_start_y*/traps_start_y_4, \
+/*traps_enx_x*/traps_end_x_4, /*traps_end_y*/traps_end_y_4, \
+/*player_start_point_x*/player_start_x_4, /*player_start_point_y*/player_start_y_4, \
+/*safe_point_x*/ safe_point_x_4,/*safe_point_y*/safe_point_y_4, \
+/*obstacles_x*/obstacles_x_4 ,/*obstacles_y*/obstacles_y_4, \
+obstacles_number_4}
+
+#define TRAPS_VELOCITY_4 1
 
 #include <stdio.h>
 

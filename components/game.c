@@ -6,7 +6,11 @@
 struct level_t* get_level_by_idx(int lvl_idx) {
   struct level_t* l = NULL;
 
+#ifndef DEBUG_LEVEL
   switch (lvl_idx % (LEVEL_NUMBER + 1)) {
+#else
+  switch(DEBUG_LEVEL) {
+#endif
     case 1: {
       struct level_config_t level_config = CONFIG_LEVEL_1;
       l = level_make(&level_config);
@@ -22,6 +26,11 @@ struct level_t* get_level_by_idx(int lvl_idx) {
       l = level_make(&level_config);
       break;
     }
+    case 4: {
+      struct level_config_t level_config = CONFIG_LEVEL_4;
+      l = level_make(&level_config);
+      break;  
+    }
     default:
       break;
   }
@@ -30,7 +39,11 @@ struct level_t* get_level_by_idx(int lvl_idx) {
 }
 
 void init_map_by_level_idx(int lvl_idx) {
+#ifndef DEBUG_LEVEL  
   switch (lvl_idx % (LEVEL_NUMBER + 1)) {
+#else
+  switch(DEBUG_LEVEL) {
+#endif
     case 1: {
       struct level_config_t level_config = CONFIG_LEVEL_1;
       entities_map_init(level_config.dim_x, level_config.dim_y);
@@ -44,6 +57,11 @@ void init_map_by_level_idx(int lvl_idx) {
       struct level_config_t level_config = CONFIG_LEVEL_3;
       entities_map_deinit();
       entities_map_init(level_config.dim_x, level_config.dim_y);
+    }
+    case 4: {
+      struct level_config_t level_config = CONFIG_LEVEL_4;
+      entities_map_deinit();
+      entities_map_init(level_config.dim_x, level_config.dim_y);  
     }
     default:
       break;
