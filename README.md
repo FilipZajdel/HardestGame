@@ -17,9 +17,9 @@ Project is realized for being deployed on various platforms. Displaying and cont
 
 Projects consists of submodules that are c-source files and tests files corresponding with each submodule. 
 
-**Master** branch contains example of deployed game on Ubuntu machine
+**Master** contains pure sources ready to used in any projects
 
-**Dev** branch contains pure submodules ready to use in different project
+**Test** contains development environment for tests using Google Test 
 
 ## Building the project
 
