@@ -49,6 +49,7 @@ struct level_t {
   void (*_update_map)(struct level_t *);
   void (*_determine_trap_direction)(struct level_t *l, int *dx, int *dy, int trap_idx);
   void (*_update_player)(struct level_t *l, enum player_move_t move);
+  void (*set_player_speed) (struct level_t *l, uint8_t player_speed);
 };
 
 /** @brief Returns level made based on config provided */

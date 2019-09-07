@@ -12,7 +12,7 @@ extern "C"{
 
 //#define DEBUG_LEVEL 2
 #define LEVEL_NUMBER 4  // Tells how many levels are available
-#define PLAYER_VELOCITY 1 // points per iteration
+#define PLAYER_VELOCITY 2 // points per iteration
 #define RECTANGLE_HEIGHT 6
 #define RECTANGLE_WIDTH 6
 #define TRAPS_VELOCITY_1 1

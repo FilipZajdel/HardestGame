@@ -3,6 +3,10 @@
 
 #include <stdlib.h>
 
+#define DEFAULT_TRAPS_SPEED_MULTIPLIER 1
+
+uint8_t PLAYER_SPEED = PLAYER_VELOCITY; // TODO: embed it into level
+
 enum level_states_t level_get_state(struct level_t* l) {
   return l->_state;
 }
@@ -18,7 +22,7 @@ void determine_trap_direction(struct level_t* l,
     *dy = 0;
     if (l->_config->traps_start_x[trap_idx] <
         l->_config->traps_end_x[trap_idx]) {
-      *dx = TRAPS_VELOCITY_1;
+      *dx = TRAPS_VELOCITY_1 ;
     } else {
       *dx = -TRAPS_VELOCITY_1;
     }
@@ -64,16 +68,16 @@ void update_player_helper(struct entity_t* player, enum player_move_t move) {
 
   switch (move) {
     case LEFT:
-      delta_x -= PLAYER_VELOCITY;
+      delta_x -= PLAYER_SPEED;
       break;
     case RIGHT:
-      delta_x += PLAYER_VELOCITY;
+      delta_x += PLAYER_SPEED;
       break;
     case UP:
-      delta_y -= PLAYER_VELOCITY;
+      delta_y -= PLAYER_SPEED;
       break;
     case DOWN:
-      delta_y += PLAYER_VELOCITY;
+      delta_y += PLAYER_SPEED;
       break;
     case NONE:
     default:
@@ -89,16 +93,16 @@ void update_player(struct level_t* l, enum player_move_t move) {
 
   switch (move) {
     case LEFT:
-      next_player_x -= (next_player_x > 0) ? PLAYER_VELOCITY : 0; 
+      next_player_x -= (next_player_x > 0) ? PLAYER_SPEED : 0;
       break;
     case RIGHT:
-      next_player_x += (next_player_x < l->_config->dim_x) ? PLAYER_VELOCITY : 0; 
+      next_player_x += (next_player_x < l->_config->dim_x) ? PLAYER_SPEED : 0;
       break;
     case UP:
-      next_player_y -= (next_player_y > 0) ? PLAYER_VELOCITY : 0; 
+      next_player_y -= (next_player_y > 0) ? PLAYER_SPEED : 0;
       break;
     case DOWN:
-      next_player_y += (next_player_y < l->_config->dim_y) ? PLAYER_VELOCITY : 0;
+      next_player_y += (next_player_y < l->_config->dim_y) ? PLAYER_SPEED : 0;
       break;
     default:
       return;
@@ -220,6 +224,10 @@ void copy_config(struct level_config_t* lvl_config, struct level_t* lvl) {
   }
 }
 
+void set_player_speed(struct level_t *self, uint8_t player_speed) {
+	PLAYER_SPEED = player_speed;
+}
+
 struct level_t* level_make(struct level_config_t* lvl_config) {
   struct level_t* level = malloc(sizeof(struct level_t));
 
@@ -251,6 +259,7 @@ struct level_t* level_make(struct level_config_t* lvl_config) {
   copy_config(lvl_config, level);
   level->_determine_trap_direction = determine_trap_direction;
   level->_update_player = update_player;
+  level->set_player_speed = set_player_speed;
 
   return level;
 }

@@ -125,7 +125,11 @@ void update(struct game_t* self, enum player_move_t player_move) {
       self->_level_idx += 1;
       self->_init_level_by_idx(self);  // to make
       init_map_by_level_idx(self->_level_idx);
-      self->_state = LEVEL_CHANGED;
+      if(self->_level_idx == (LEVEL_NUMBER+1)) {
+    	  self->_state = GAME_DONE;
+      } else {
+    	  self->_state = LEVEL_CHANGED;
+      }
       break;
     default:
       break;
@@ -144,6 +148,10 @@ struct map_field_t **game_get_map(struct game_t *self, int *width, int *height){
   return get_map(width, height); 
 }
 
+void game_set_player_speed(struct game_t *self, uint8_t player_speed){
+	self->_level->set_player_speed(self->_level,player_speed);
+}
+
 struct game_t* game_make() {
   struct game_t* game = malloc(sizeof(struct game_t));
   if (NULL == game) {
@@ -159,6 +167,7 @@ struct game_t* game_make() {
   game->_state = NON_INIT;
   game->_init_level_by_idx = _init_level_by_idx;
   game->_level = NULL;
+  game->set_player_speed = game_set_player_speed;
 
   return game;
 }

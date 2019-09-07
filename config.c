@@ -11,11 +11,11 @@
 //
 uint16_t traps_start_y_1[TRAPS_NUMBER_1] = {52, 43, 23, 62, 62, 13};
 uint16_t traps_end_y_1[TRAPS_NUMBER_1] = {52, 43, 23, 62, 62, 13};
-uint16_t traps_start_x_1[TRAPS_NUMBER_1] = {8, 83, 8, 33, 50, 0};
-uint16_t traps_end_x_1[TRAPS_NUMBER_1] = {83, 8, 83, 0, 83, 50};
+uint16_t traps_start_x_1[TRAPS_NUMBER_1] = {8, 83, 8, 33, 50, 1};
+uint16_t traps_end_x_1[TRAPS_NUMBER_1] = {83, 8, 83, 1, 83, 50};
 
 uint16_t player_start_x_1 = 13;
-uint16_t player_start_y_1 = 69;
+uint16_t player_start_y_1 = 68;
 uint16_t safe_point_x_1 = 50;
 uint16_t safe_point_y_1 = 0;
 uint16_t traps_number_1 = TRAPS_NUMBER_1;
@@ -92,9 +92,9 @@ uint16_t obstacles_y_3[OBSTACLES_NUMBER_3] =
 // extern const char level_name_4[20] = "Rollercoaster";
 
 uint16_t traps_start_x_4[TRAPS_NUMBER_4] = {70/3, 95/3, 125/3,  179/3, 279/3, 179/3, 120/3, 150/3, 180/3, /*170, 170, 150, 230*/};
-uint16_t traps_start_y_4[TRAPS_NUMBER_4] = {0,  120/4,  0,  100/4, 125/4, 150/4, 200/4, 279/4, 200/4, /*120, 180, 120, 180*/};
+uint16_t traps_start_y_4[TRAPS_NUMBER_4] = {1,  120/4,  1,  100/4, 125/4, 150/4, 200/4, 279/4, 200/4, /*120, 180, 120, 180*/};
 uint16_t traps_end_x_4[TRAPS_NUMBER_4] =   {70/3, 95/3,  125/3, 279/3, 179/3, 279/3, 120/3, 150/3, 180/3, /*250, 250, 150, 230*/};
-uint16_t traps_end_y_4[TRAPS_NUMBER_4] =   {120/4, 0,  120/4, 100/4, 125/4, 150/4, 279/4, 200/4, 279/4, /*120, 180, 180, 120*/};
+uint16_t traps_end_y_4[TRAPS_NUMBER_4] =   {120/4, 1,  120/4, 100/4, 125/4, 150/4, 279/4, 200/4, 279/4, /*120, 180, 180, 120*/};
 
 uint16_t player_start_x_4 = 5/3;
 uint16_t player_start_y_4 = 279/4;
@@ -122,8 +122,8 @@ uint16_t obstacles_y_4[OBSTACLES_NUMBER_4] = {
 extern const char level_name_1[20] = "Hell begins";
 
 uint16_t traps_start_y_1[TRAPS_NUMBER_1] = {200, 130, 70, 250, 250, 40};
-uint16_t traps_start_x_1[TRAPS_NUMBER_1] = {26, 250, 26, 100, 150, 0};
-uint16_t traps_end_x_1[TRAPS_NUMBER_1] = {250, 26, 250, 0, 250, 150};
+uint16_t traps_start_x_1[TRAPS_NUMBER_1] = {26, 250, 26, 100, 150, 1};
+uint16_t traps_end_x_1[TRAPS_NUMBER_1] = {250, 26, 250, 1, 250, 150};
 uint16_t traps_end_y_1[TRAPS_NUMBER_1] = {200, 130, 70, 250, 250, 40};
 
 uint16_t player_start_x_1 = 40;
@@ -165,10 +165,10 @@ uint16_t obstacles_y_2[OBSTACLES_NUMBER_2];
 //////////////////////////////
 extern const char level_name_3[20] = "Symmetrick hell";
 
-uint16_t traps_start_x_3[TRAPS_NUMBER_3] = {259, 200,  140, 80, 80, 0, 60};
+uint16_t traps_start_x_3[TRAPS_NUMBER_3] = {259, 200,  140, 80, 80, 1, 60};
 uint16_t traps_start_y_3[TRAPS_NUMBER_3] = {40,  80,  80,  20,  180, 120, 160};
 
-uint16_t traps_end_x_3[TRAPS_NUMBER_3] =   {259, 200, 140, 80, 80, 60, 0};
+uint16_t traps_end_x_3[TRAPS_NUMBER_3] =   {259, 200, 140, 80, 80, 60, 1};
 uint16_t traps_end_y_3[TRAPS_NUMBER_3] =   {240, 200, 200, 100, 260, 120, 160};
 
 uint16_t player_start_x_3 = 279;
@@ -204,9 +204,9 @@ uint16_t obstacles_y_3[OBSTACLES_NUMBER_3] =
 extern const char level_name_4[20] = "Rollercoaster";
 
 uint16_t traps_start_x_4[TRAPS_NUMBER_4] = {70, 95, 125,  179, 279, 179, 120, 150, 180, /*170, 170, 150, 230*/};
-uint16_t traps_start_y_4[TRAPS_NUMBER_4] = {0,  120,  0,  100, 125, 150, 200, 279, 200, /*120, 180, 120, 180*/};
+uint16_t traps_start_y_4[TRAPS_NUMBER_4] = {1,  120,  1,  100, 125, 150, 200, 279, 200, /*120, 180, 120, 180*/};
 uint16_t traps_end_x_4[TRAPS_NUMBER_4] =   {70, 95,  125, 279, 179, 279, 120, 150, 180, /*250, 250, 150, 230*/};
-uint16_t traps_end_y_4[TRAPS_NUMBER_4] =   {120, 0,  120, 100, 125, 150, 279, 200, 279, /*120, 180, 180, 120*/};
+uint16_t traps_end_y_4[TRAPS_NUMBER_4] =   {120, 1,  120, 100, 125, 150, 279, 200, 279, /*120, 180, 180, 120*/};
 
 uint16_t player_start_x_4 = 5;
 uint16_t player_start_y_4 = 279;

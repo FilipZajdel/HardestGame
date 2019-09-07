@@ -9,7 +9,7 @@
 extern "C"{
 #endif
 
-enum game_state_t {RUNNING, GAME_OVER, NON_INIT, LEVEL_CHANGED};
+enum game_state_t {RUNNING, GAME_OVER, NON_INIT, LEVEL_CHANGED, GAME_DONE};
 
 struct game_t{
     // public
@@ -30,6 +30,7 @@ struct game_t{
     int _level_idx;
     enum game_state_t _state;
     void (*_init_level_by_idx)(struct game_t *self);
+    void (*set_player_speed)(struct game_t *self, uint8_t player_speed);
 };
 
 /** @brief Returns newly created game instance */
